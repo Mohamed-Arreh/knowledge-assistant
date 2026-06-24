@@ -3,6 +3,8 @@ import { chunkText } from '@/lib/chunker'
 import { embedDocuments } from '@/lib/voyage'
 import { extractPdfText } from '@/lib/pdf'
 
+export const maxDuration = 60
+
 export async function POST(request: Request) {
   let content: string
   let source: string
