@@ -50,7 +50,7 @@ Voyage is Anthropic's recommended embedding provider, so the pairing is *Claude 
 - **Asymmetric embeddings** — documents and queries are embedded with different `input_type` values (`document` vs `query`), which Voyage uses to optimize retrieval relevance.
 - **Batched ingestion** — large documents are split into token-bounded batches before embedding, staying under the embedding API's per-request token cap so multi-hundred-page PDFs ingest without errors.
 - **Text sanitization** — extracted PDF text is stripped of null bytes and control characters that PostgreSQL rejects, so messy real-world PDFs ingest cleanly.
-- **Serverless-safe PDF parsing** — the PDF library is loaded dynamically so it only initializes when a PDF is actually uploaded, avoiding serverless bundling failures on the deployed function.
+- **Serverless-safe PDF parsing** — uses `unpdf`, a PDF text-extraction library built for serverless environments, so PDF ingestion works reliably on the deployed Vercel function (a previous library failed to bundle into the serverless runtime).
 
 ---
 
